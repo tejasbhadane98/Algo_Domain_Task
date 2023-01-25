@@ -1,0 +1,25 @@
+{
+  "name": "algo_domain_task",
+  "version": "1.0.0",
+  "description": "Technical Task Solution",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tejasbhadane98/Algo_Domain_Task.git"
+  },
+  "author": "Tejas Bhadane",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tejasbhadane98/Algo_Domain_Task/issues"
+  },
+  "homepage": "https://github.com/tejasbhadane98/Algo_Domain_Task#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongodb": "^4.13.0",
+    "mongoose": "^6.8.4",
+    "nodemon": "^2.0.20"
+  }
+}
