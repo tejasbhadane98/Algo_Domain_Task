@@ -3,6 +3,8 @@ const Product = require("../models/products");
 const Discount = require("../models/discounts")
 const router = express.Router();
 
+
+// Adding Differnet Products to the Product Table
 router.post("/product", async (req, res) => {
     try {
         let products = await Product.create({ ...req.body });
@@ -13,6 +15,10 @@ router.post("/product", async (req, res) => {
     }
 });
 
+
+
+
+// Fetching all the Data From the Product table
 router.get("/product", async (req, res) => {
     try {
         let products = await Product.find();
@@ -23,17 +29,10 @@ router.get("/product", async (req, res) => {
     }
 })
 
-// router.get("/getProducts/:Product_id", async(req,res)=>{
-//     try{
-//         // console.log(req.params.Product_id);
-//         let products = await Product.findOne({Product_id:req.params.Product_id});
-//         res.json(products);
-//     }
-//     catch(err){
-//         res.json(err.message)
-//     }
-// });
 
+
+
+// getProducts method will calculate the final price of each product based on discount and other charges table .
 router.get("/getProducts/:Product_id", async (req, res) => {
     try {
         let products = await Product.findOne({ Product_id: req.params.Product_id });
@@ -68,8 +67,39 @@ router.get("/getProducts/:Product_id", async (req, res) => {
     catch (err) {
         res.json({ err })
     }
-})
+});
 
+
+
+// Updating the product price depend upon the Product id
+router.put("/product/:Product_id/:updatePrice", async(req,res)=>{
+    try{
+        let product = await Product.findOne({Product_id:req.params.Product_id});
+        // console.log(product)
+        let updateProduct = await Product.updateOne({Product_id:req.params.Product_id}, {$set:{Product_price:req.params.updatePrice}});
+        // console.log(updateProduct);
+        res.json("Product Prize Updated Succesfully and Prize is", updateProduct)
+    }
+    catch(err){
+        console.log(err.message)
+    }
+
+});
+
+
+//  Deleting the product from the database
+router.delete("/product/:Product_id", async(req,res)=>{
+    try{
+        let product = await Product.deleteOne({Product_id:req.params.Product_id})
+        // console.log(product)
+        // console.log(updateProduct);
+        res.json("Product Deletet From Database Succesfully")
+    }
+    catch(err){
+        console.log(err.message)
+    }
+
+});
 
 
 
